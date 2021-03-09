@@ -1,0 +1,40 @@
+---
+title: "Hello, world!"
+description: |
+  Instructions for using Distill as a notepad
+author:
+  - name: Darya Vanichkina
+    url: daryavanichkina.com
+date: 03-09-2021
+draft: false
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+In this "post", I'd like to offer details (mostly for myself) on how to get this to work. I save a lot of links to materials/blog posts/RWeekly/RBloggers posts, and instead of reading them, taking notes and forgetting them I'd like to instead use this space to host them as, effectively, a public Evernote/Bear/Quiver/notetaking tool of choice. 
+
+When you want to save a blog post from the interwebs:
+
+1. Open this project
+
+2. Run distill::create_post("The random post title")
+
+This will create and Rmd document for the post. 
+
+3. Edit the metadata, especially author and original URL. Then open the Rmd in Typora.
+
+4. Copy/paste the content into Typora. Make sure you correctly set the image file paths to match what Rmd expects.
+
+5. Knit the document in Rstudio. Make sure to add `r eval=FALSE`to any R code chunks that have been copy/pasted.
+
+6. Build the website in the Build tab in Rstudio.
+
+7. Push to GitHub.
+
+

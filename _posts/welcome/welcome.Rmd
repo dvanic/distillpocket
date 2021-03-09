@@ -1,0 +1,25 @@
+---
+title: "Welcome to Darya's Pocket"
+description: |
+  This is an Evernote/Pocket clone for posts I read and like
+author:
+  - name: Darya Vanichkina
+    url: daryavanichkina.com
+    affiliation: Data Science Consultant & Analytics Trainer
+    affiliation_url: daryavanichkina.com
+date: 03-09-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Learn more about creating blogs with Distill at:
+# https://rstudio.github.io/distill/blog.html
+
+```
+This is the original post
+
+

@@ -1,0 +1,36 @@
+---
+title: "Deep learning in production"
+description: |
+  Cool links from Reddit
+author:
+  - name: SergiosKar
+    url: https://www.reddit.com/r/MachineLearning/comments/m0ew90/d_deep_learning_in_production/
+date: 03-09-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Machine Learning Infrastructure has  been neglected for quite some time by ml educators and content creators. It recently started to gain some traction but the content out there is  still limited. Since I believe that it is an integral part of the ML  pipeline, I recently finished an article series where I explore how to  build, train, deploy and scale Deep Learning models (alongside with code for every post). Feel free to check it out and let me know your  thoughts. I am also thinking to expand it into a full book so feedback  is much appreciated.
+
+1. Laptop set up and system design: https://theaisummer.com/deep-learning-production/
+2. Best practices to write Deep Learning code: Project structure, OOP, Type checking and documentation: https://theaisummer.com/best-practices-deep-learning-code/
+3. How to Unit Test Deep Learning: Tests in TensorFlow, mocking and test coverage: https://theaisummer.com/unit-test-deep-learning/
+4. Logging and Debugging in Machine Learning: https://theaisummer.com/logging-debugging/
+5. Data preprocessing for deep learning: https://theaisummer.com/data-preprocessing/
+6. Data preprocessing for deep learning (part2): https://theaisummer.com/data-processing-optimization/
+7. How to build a custom production-ready Deep Learning Training loop in Tensorflow from scratch: https://theaisummer.com/tensorflow-training-loop/
+8. How to train a deep learning model in the cloud: https://theaisummer.com/training-cloud/
+9. Distributed Deep Learning training: Model and Data Parallelism in Tensorflow: https://theaisummer.com/distributed-training/
+10. Deploy a Deep Learning model as a web application using Flask and Tensorflow: https://theaisummer.com/deploy-flask-tensorflow/
+11. How to use uWSGI and Nginx to serve a Deep Learning model: https://theaisummer.com/uwsgi-nginx/
+12. How to use Docker containers and Docker Compose for Deep Learning applications: https://theaisummer.com/docker/
+13. Scalability in Machine Learning: Grow your model to serve millions of users: https://theaisummer.com/scalability/
+14. Introduction to Kubernetes with Google Cloud: Deploy your Deep Learning model effortlessly: https://theaisummer.com/kubernetes/
+
+Github: https://github.com/The-AI-Summer/Deep-Learning-In-Production

@@ -1,0 +1,13 @@
+---
+title: "About this blog"
+description: 'This is my personal "public" note space'
+  
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+This repository and generated site contain snippets of posts that I've read online and would like to save. Note that these are not MY posts - these are things I've found online, read and liked. Previously, I'd save them to a program like Evernote, Bear or Quiver - but this would mean they are searchable only on the computer/phone where I've got the tools installed, and only for me. Instead, I'm copying them to this website and making the searchable from anywhere - first and foremost to myself!
+
+Please note: these are NOT my blog posts, I am NOT their author - in each post, I've linked to the original source of the materials (you can get this by clicking on the author's name!). Please follow those links after finding the appropriate post using the search function - that way the original authors will get extra hits to their blogs, and Google will up-rank their pages in search results. 

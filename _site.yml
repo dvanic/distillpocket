@@ -1,0 +1,15 @@
+name: "distillpocket"
+title: "Darya's Pocket"
+author: "Darya Vanichkina"
+url: "daryavanichkina.com"
+affiliation: "Data Science Consultant & Professional Educator"
+description: |
+  "This repository and generated site contain snippets of posts that I've read online and would like to save."
+output_dir: "docs"
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+output: distill::distill_article
