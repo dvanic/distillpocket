@@ -2,6 +2,7 @@ name: "distillpocket"
 title: "Darya's Pocket"
 author: "Darya Vanichkina"
 url: "daryavanichkina.com"
+base_url: "https://dvanic.github.io/distillpocket/"
 affiliation: "Data Science Consultant & Professional Educator"
 description: |
   "This repository and generated site contain snippets of posts that I've read online and would like to save."

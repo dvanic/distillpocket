@@ -6,14 +6,14 @@
       "description": "This is my personal \"public\" note space",
       "author": [],
       "contents": "\nThis repository and generated site contain snippets of posts that I’ve read online and would like to save. Note that these are not MY posts - these are things I’ve found online, read and liked. Previously, I’d save them to a program like Evernote, Bear or Quiver - but this would mean they are searchable only on the computer/phone where I’ve got the tools installed, and only for me. Instead, I’m copying them to this website and making the searchable from anywhere - first and foremost to myself!\nPlease note: these are NOT my blog posts, I am NOT their author - in each post, I’ve linked to the original source of the materials (you can get this by clicking on the author’s name!). Please follow those links after finding the appropriate post using the search function - that way the original authors will get extra hits to their blogs, and Google will up-rank their pages in search results.\n\n\n\n",
-      "last_modified": "2021-03-09T13:23:10+11:00"
+      "last_modified": "2021-03-09T13:31:43+11:00"
     },
     {
       "path": "index.html",
       "title": "Darya's collection of interesting blog posts",
       "author": [],
-      "contents": "\n\n\n\n",
-      "last_modified": "2021-03-09T13:23:10+11:00"
+      "contents": "\nThis will be a landing page?\n\n\n\n",
+      "last_modified": "2021-03-09T13:31:43+11:00"
     }
   ],
   "collections": ["posts/posts.json"]

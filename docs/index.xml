@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>Darya's Pocket</title>
+    <link>https://dvanic.github.io/distillpocket/</link>
+    <atom:link href="https://dvanic.github.io/distillpocket/index.xml" rel="self" type="application/rss+xml"/>
+    <description>"This repository and generated site contain snippets of posts that I've read online and would like to save."
+</description>
+    <generator>Distill</generator>
+    <lastBuildDate>Tue, 09 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Deep learning in production</title>
+      <dc:creator>SergiosKar</dc:creator>
+      <link>https://dvanic.github.io/distillpocket/posts/2021-03-09-deep-learning-in-production-links-from-reddit</link>
+      <description>Cool links from Reddit</description>
+      <guid>https://dvanic.github.io/distillpocket/posts/2021-03-09-deep-learning-in-production-links-from-reddit</guid>
+      <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Hello, world!</title>
+      <dc:creator>Darya Vanichkina</dc:creator>
+      <link>https://dvanic.github.io/distillpocket/posts/2021-03-09-hello-world</link>
+      <description>Instructions for using Distill as a notepad</description>
+      <guid>https://dvanic.github.io/distillpocket/posts/2021-03-09-hello-world</guid>
+      <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>PowerPoint Slides in R via officer: A handholding guide</title>
+      <dc:creator>Ljupcho Naumov</dc:creator>
+      <link>https://dvanic.github.io/distillpocket/posts/2021-03-09-powerpoint-slides-in-r-via-officer-a-handholding-guide</link>
+      <description>How to make ppt from R</description>
+      <category>Word</category>
+      <guid>https://dvanic.github.io/distillpocket/posts/2021-03-09-powerpoint-slides-in-r-via-officer-a-handholding-guide</guid>
+      <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Welcome to Darya's public pocket</title>
+      <dc:creator>Darya Vanichkina</dc:creator>
+      <link>https://dvanic.github.io/distillpocket/posts/welcome</link>
+      <description>This is a public note space</description>
+      <guid>https://dvanic.github.io/distillpocket/posts/welcome</guid>
+      <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>

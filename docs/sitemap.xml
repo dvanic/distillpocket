@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" version="1.0">
+  <url>
+    <loc>https://dvanic.github.io/distillpocket/about.html</loc>
+    <lastmod>2021-03-09T13:15:23+11:00</lastmod>
+  </url>
+  <url>
+    <loc>https://dvanic.github.io/distillpocket/</loc>
+    <lastmod>2021-03-09T13:28:46+11:00</lastmod>
+  </url>
+  <url>
+    <loc>https://dvanic.github.io/distillpocket/posts/2021-03-09-deep-learning-in-production-links-from-reddit/</loc>
+    <lastmod>2021-03-09T13:04:31+11:00</lastmod>
+  </url>
+  <url>
+    <loc>https://dvanic.github.io/distillpocket/posts/2021-03-09-hello-world/</loc>
+    <lastmod>2021-03-09T13:13:37+11:00</lastmod>
+  </url>
+  <url>
+    <loc>https://dvanic.github.io/distillpocket/posts/2021-03-09-powerpoint-slides-in-r-via-officer-a-handholding-guide/</loc>
+    <lastmod>2021-03-09T13:23:02+11:00</lastmod>
+  </url>
+  <url>
+    <loc>https://dvanic.github.io/distillpocket/posts/welcome/</loc>
+    <lastmod>2021-03-09T12:54:30+11:00</lastmod>
+  </url>
+</urlset>
