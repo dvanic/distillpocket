@@ -28,9 +28,9 @@
     ],
     "date": "2021-03-09",
     "categories": [],
-    "contents": "\nIn this “post”, I’d like to offer details (mostly for myself) on how to get this to work. I save a lot of links to materials/blog posts/RWeekly/RBloggers posts, and instead of reading them, taking notes and forgetting them I’d like to instead use this space to host them as, effectively, a public Evernote/Bear/Quiver/notetaking tool of choice.\nWhen you want to save a blog post from the interwebs:\nOpen this project\nRun distill::create_post(“The random post title”)\nThis will create and Rmd document for the post.\nEdit the metadata, especially author and original URL. Then open the Rmd in Typora.\nCopy/paste the content into Typora. Make sure you correctly set the image file paths to match what Rmd expects.\nKnit the document in Rstudio. Make sure to add to any R code chunks that have been copy/pasted.\nBuild the website in the Build tab in Rstudio.\nPush to GitHub.\n\n\n\n",
+    "contents": "\nIn this “post”, I’d like to offer details (mostly for myself) on how to get this to work. I save a lot of links to materials/blog posts/RWeekly/RBloggers posts, and instead of reading them, taking notes and forgetting them I’d like to instead use this space to host them as, effectively, a public Evernote/Bear/Quiver/notetaking tool of choice.\nWhen you want to save a blog post from the interwebs:\nOpen this project\nRun distill::create_post(“The random post title”)\nThis will create and Rmd document for the post.\nEdit the metadata, especially author and original URL. Then open the .Rmd in Typora.\nCopy/paste the content into Typora. Make sure you correctly set the image file paths to match what Rmd expects.\nKnit the document in Rstudio. Make sure to add to any R code chunks that have been copy/pasted.\nBuild the website in the Build tab in Rstudio.\nPush to GitHub.\n\n\n\n",
     "preview": {},
-    "last_modified": "2021-03-09T13:13:37+11:00",
+    "last_modified": "2021-03-09T13:34:08+11:00",
     "input_file": {}
   },
   {

@@ -27,7 +27,7 @@ When you want to save a blog post from the interwebs:
 
 This will create and Rmd document for the post. 
 
-3. Edit the metadata, especially author and original URL. Then open the Rmd in Typora.
+3. Edit the metadata, especially author and original URL. Then open the `.Rmd` in Typora.
 
 4. Copy/paste the content into Typora. Make sure you correctly set the image file paths to match what Rmd expects.
 
