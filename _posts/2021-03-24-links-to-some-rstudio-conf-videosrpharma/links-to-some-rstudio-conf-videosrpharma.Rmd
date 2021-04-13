@@ -1,0 +1,21 @@
+---
+title: "Links to some RStudio conf videos/RPharma"
+description: |
+  Links to videos shared
+author:
+  - name: Samantha Toet & RStudio
+date: 03-24-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+- https://rstudio.com/resources/rstudioglobal-2021/risk-assessment-tools-r-validation-hub-initiatives/
+- https://rstudio.com/resources/rstudioglobal-2021/r-in-janssen-drug-discovery-statistics/
+- https://rstudio.com/resources/rstudioglobal-2021/r-in-pharma-intro-to-shiny/
+- https://blog.rstudio.com/2021/03/15/mastering-shiny-with-appsilon-x-session-recordings-are-now-available/

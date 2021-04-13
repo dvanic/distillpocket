@@ -5,6 +5,7 @@ description: |
 author:
   - name: Ljupcho Naumov
     url: https://ljupcho.com/blog/powerpoint
+citation_url: https://ljupcho.com/blog/powerpoint
 date: 03-09-2021
 categories: Word
 output:

@@ -1,0 +1,1759 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #20794d; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #20794d; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+  <!--radix_placeholder_meta_tags-->
+  <title>Simplifying geospatial features in R with sf and rmapshaper</title>
+
+  <meta property="description" itemprop="description" content="Cool overview of how to simplify geospatial features to save memory"/>
+
+
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2021-03-24"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-03-24"/>
+  <meta name="article:author" content="Markus Konrad"/>
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="Simplifying geospatial features in R with sf and rmapshaper"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Cool overview of how to simplify geospatial features to save memory"/>
+  <meta property="og:locale" content="en_US"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="Simplifying geospatial features in R with sf and rmapshaper"/>
+  <meta property="twitter:description" content="Cool overview of how to simplify geospatial features to save memory"/>
+
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","citation-url","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Simplifying geospatial features in R with sf and rmapshaper"]},{"type":"character","attributes":{},"value":["Cool overview of how to simplify geospatial features to save memory\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Markus Konrad"]},{"type":"character","attributes":{},"value":["https://datascience.blog.wzb.eu/2021/03/15/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/"]}]}]},{"type":"character","attributes":{},"value":["https://datascience.blog.wzb.eu/2021/03/15/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/"]},{"type":"character","attributes":{},"value":["03-24-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/01mvmap-1-1024x731.png","fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/02mvmap_zoom-1-edited.png","fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/03mvsimpl-1-1024x731.png","fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/04mvsimpl_zoom-1-edited.png","fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/05mvsimpl_diff-1-edited.png","fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/06mvpreservetopo-1-edited.png","fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/07mvsimpl_coarse-1-1024x731.png","fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/08mvsimpl_coarse_diff-1-1024x731.png","fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/09fedstates-1-1024x731.png","fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/10fedstates_simpl_fail-1-1024x731.png","fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/11fedstates_simpl_rmapshaper-1-1024x731.png","fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/12mvbuf-1-1024x731.png","fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/13mvbuf_diff-1-edited.png","fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/14mvbuf2-1-1024x731.png","fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/15mvbuf2_diff-1-edited.png","fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/16mvbuf3-1-1024x731.png","fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/17mvbuf3_diff-1-edited.png","fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/18noise-1-1024x731.png","fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/19noise_zoom-1-edited.png","fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/20noise_union_zoom-1-edited.png","fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/21noise_union-1-1024x731.png","fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/22noise_union_simpl-1-1024x731.png","fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/23noise_union_fail-1-1024x731.png","fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/24noise_levels-1-1024x731.png"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .d-contents li {
+    list-style-type: none
+  }
+
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+
+  .d-contents ul {
+    padding-left: 1em
+  }
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure img {
+    width: 100%;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme
+    $('code.sourceCode a:empty').remove();
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-contents').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <!--/radix_placeholder_distill-->
+  <script src="simplifying-geospatial-features-in-r-with-sf-and-rmapshaper_files/header-attrs-2.7/header-attrs.js"></script>
+  <script src="simplifying-geospatial-features-in-r-with-sf-and-rmapshaper_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="simplifying-geospatial-features-in-r-with-sf-and-rmapshaper_files/popper-2.6.0/popper.min.js"></script>
+  <link href="simplifying-geospatial-features-in-r-with-sf-and-rmapshaper_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="simplifying-geospatial-features-in-r-with-sf-and-rmapshaper_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="simplifying-geospatial-features-in-r-with-sf-and-rmapshaper_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="simplifying-geospatial-features-in-r-with-sf-and-rmapshaper_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="simplifying-geospatial-features-in-r-with-sf-and-rmapshaper_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="simplifying-geospatial-features-in-r-with-sf-and-rmapshaper_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="simplifying-geospatial-features-in-r-with-sf-and-rmapshaper_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Simplifying geospatial features in R with sf and rmapshaper","description":"Cool overview of how to simplify geospatial features to save memory","authors":[{"author":"Markus Konrad","authorURL":"https://datascience.blog.wzb.eu/2021/03/15/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-03-24T00:00:00.000+00:00","citationText":"Konrad, 2021"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Simplifying geospatial features in R with sf and rmapshaper</h1>
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
+<p><p>Cool overview of how to simplify geospatial features to save memory</p></p>
+</div>
+
+<div class="d-byline">
+  Markus Konrad <a href="https://datascience.blog.wzb.eu/2021/03/15/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/" class="uri">https://datascience.blog.wzb.eu/2021/03/15/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/</a> 
+  
+<br/>03-24-2021
+</div>
+
+<div class="d-article">
+<p>When working with geospatial data, memory consumption and computation time can become quite a problem, since these datasets are often very large. You may have very granular, high resolution data although that isn’t really necessary for your use-case, for example when plotting large scale maps or when applying calculations at a spatial level for which lower granularity is sufficient. In such scenarios, it’s best to first <em>simplify</em> the <em>geospatial features</em> (the sets of points, lines and polygons that represent geographic entities) in your data. By simplify I mean that we generally reduce the amount of information that is used to represent these features, i.e. we remove complete features (e.g. small islands), we join features (e.g. we combine several overlapping or adjacent features) or we reduce the complexity of features (e.g. we remove vertices or holes in a feature). Since applying these operations comes with information loss you should be very careful about how much you simplify and if this in some way biases you results.</p>
+<p>In R, we can apply this sort of simplification with a few functions from the packages <a href="https://cran.r-project.org/web/packages/sf/index.html">sf</a> and, for some special cases explained below, <a href="https://cran.r-project.org/web/packages/rmapshaper/index.html">rmapshaper</a>. In the following, I will show how to apply them and what the effects of their parameters are. The data and source code are <a href="https://github.com/WZBSocialScienceCenter/r_simplify_features">available on GitHub</a>.</p>
+<p>First, let’s load the required libraries. Besides the already mentioned sf package, we also load <a href="https://ggplot2.tidyverse.org/">ggplot2</a> for visualization and <a href="https://magrittr.tidyverse.org/">magrittr</a>, because I will use the <code>%&gt;%</code> pipe operator sometimes.</p>
+<pre><code>library(ggplot2)
+library(magrittr)
+library(sf)</code></pre>
+<p>I will also use a utility function <code>plot_map()</code> which is capable of plotting geospatial features, zooming into certain spots and highlighting differences between two features. The lengthy source code for this function is available in the <a href="https://github.com/WZBSocialScienceCenter/r_simplify_features">Rmarkdown document of the related GitHub repository</a>.</p>
+<h2 id="loading-and-transforming-our-sample-data">Loading and transforming our sample data</h2>
+<p>Let’s load our first example dataset. It represents the German federal state <a href="https://www.openstreetmap.org/relation/28322">Mecklenburg-Vorpommern (or Mecklenburg-West Pomerania)</a> that features a ragged coastline at the Baltic Sea, which is nice to show the effects of feature simplification. I will abbreviate Mecklenburg-Vorpommern by MV to spare us the complicated name.</p>
+<pre><code>mv &lt;- st_read(&#39;data/mv.geojson&#39;) %&gt;%
+  st_geometry() %&gt;%
+  st_transform(crs = &#39;+proj=aeqd +lat_0=53.6 +lon_0=12.7&#39;)
+    # centered at input data for low distortion</code></pre>
+<p>The dataset contains only a single feature (a multi-polygon, i.e. a set of polygons) with some metadata from OpenStreetMap. I use <code>st_geometry</code> to access this feature (i.e. dismiss the metadata) and <code>st_transform</code> to transform it to an <a href="http://www.radicalcartography.net/?projectionref">Azimuthal Equidistant</a> map projection. The latter is quite important. Most functions that I’ll use don’t work with spherical coordinates as used for example by the <a href="http://epsg.io/4326">WGS84 (GPS) standard</a>, where longitude and latitude in degrees describe a position on a sphere. We need to project these coordinates on a plane using a coordinate reference system (CRS) with a specific projection. All projections distort in some way, but we can choose a CRS that accurately represents certain measures. For example, I chose an equidistant CRS because it accurately represents distances up to 10,000 km from the center of projection. Another important aspect is that by using this CRS, we move from degrees to meters as units for our coordinates.</p>
+<p>Let’s plot our projection of MV. Note the axes which represent the distance from the projection center (I chose the geographic center of MV for that) in meters.</p>
+<pre><code>plot_map(mv, graticules = TRUE)</code></pre>
+<figure>
+<img src="fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/01mvmap-1-1024x731.png" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>Let’s zoom in on the island of Rügen with it’s ragged coastline (west of it is the peninsula Darß, east is a part of Usedom).</p>
+<pre><code>plot_map(mv, graticules = TRUE, zoom_to = c(13.359, 54.413), 
+         zoom_level = 8)</code></pre>
+<figure>
+<img src="fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/02mvmap_zoom-1-edited.png" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<h2 id="removing-vertices-with-st_simplify">Removing vertices with <code>st_simplify</code></h2>
+<p>We can now continue to apply different simplification methods to the displayed features. We will start with – no surprise – <a href="https://rdrr.io/cran/sf/man/geos_unary.html"><code>st_simplify</code></a>. This function removes vertices in lines or polygons to form simpler shapes. The function implementation uses the <a href="https://en.wikipedia.org/wiki/Ramer–Douglas–Peucker_algorithm">Douglas–Peucker algorithm</a> for simplification and accepts a parameter <code>dTolerance</code>, which roughly speaking specifies the distance in which any “wiggles” will be straightened. It’s in the same unit as the input data, so in our case it’s meters (the unit used in our CRS). There’s also a parameter <code>preserveTopology</code> which, when set to TRUE, makes sure that polygons are not reduced to lines or even removed, or that inner holes in them are removed during the simplification process.</p>
+<p>Let’s apply <code>st_simplify</code> with a tolerance of 1km:</p>
+<pre><code>mv_simpl &lt;- st_simplify(mv, preserveTopology = FALSE, dTolerance = 1000)
+plot_map(mv_simpl)</code></pre>
+<figure>
+<img src="fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/03mvsimpl-1-1024x731.png" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>We can see that the geometry is much simpler, especially when zooming in:</p>
+<pre><code>plot_map(mv_simpl, zoom_to = c(13.359, 54.413), zoom_level = 8)</code></pre>
+<figure>
+<img src="fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/04mvsimpl_zoom-1-edited.png" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>We can also confirm the memory usage is much lower for the simplified feature (shown in kilobytes):</p>
+<pre><code>round(c(object.size(mv), object.size(mv_simpl)) / 1024)
+[1] 960  13</code></pre>
+<p>The purple areas show the differences between the original and the simplified version. We can see for example, that some smaller islands were completely removed.</p>
+<pre><code>plot_map(mv, mv_simpl, zoom_to = c(13.359, 54.413),
+         zoom_level = 8)</code></pre>
+<figure>
+<img src="fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/05mvsimpl_diff-1-edited.png" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>When we set <code>preserveTopology</code> to TRUE, we can observe that the small islands are retained:</p>
+<pre><code>mv_simpl &lt;- st_simplify(mv, preserveTopology = TRUE,
+                        dTolerance = 1000)
+plot_map(mv_simpl, zoom_to = c(13.359, 54.413), zoom_level = 8)</code></pre>
+<figure>
+<img src="fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/06mvpreservetopo-1-edited.png" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>Increasing the <code>dTolerance</code> parameter to 10km gives us something that is more akin to a Cubistic painting:</p>
+<pre><code>mv_simpl &lt;- st_simplify(mv, preserveTopology = FALSE, 
+                        dTolerance = 10000)
+plot_map(mv_simpl)</code></pre>
+<figure>
+<img src="fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/07mvsimpl_coarse-1-1024x731.png" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<pre><code>plot_map(mv, mv_simpl)</code></pre>
+<figure>
+<img src="fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/08mvsimpl_coarse_diff-1-1024x731.png" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<h2 id="st_simplify-limitations"><code>st_simplify</code> limitations</h2>
+<p>Using <code>st_simplify</code> comes with a limitation when working with multiple, adjacent features which I’d like to demonstrate using a map of the federal states in Germany.</p>
+<pre><code>fedstates &lt;- read_sf(&#39;data/germany_fedstates.geojson&#39;) %&gt;%
+  st_transform(crs = 5243)  # ETRS89 / LCC Germany (E-N)
+fedstates[c(&#39;name&#39;, &#39;geometry&#39;)]
+## Simple feature collection with 16 features and 1 field
+## geometry type:  MULTIPOLYGON
+…
+## projected CRS:  ETRS89 / LCC Germany (E-N)
+## # A tibble: 16 x 2
+…
+##  1 Baden-Württemberg (((-112269.7 -363339.8, …
+##  2 Bavaria           (((-109036.3 -104479.2, …
+##  3 Berlin            (((175933 160909.2, …
+…</code></pre>
+<p>This time, our spatial dataset contains 16 features which represent the boundaries of each federal state:</p>
+<pre><code>plot_map(fedstates, graticules = TRUE, strokecolor = &#39;#097FB3&#39;,
+         fillcolor = &#39;#AED3E4&#39;)</code></pre>
+<figure>
+<img src="fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/09fedstates-1-1024x731.png" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>Let’s apply <code>st_simplify</code> with a tolerance of 10km and preserving feature topology:</p>
+<pre><code>fedstates_simpl &lt;- st_simplify(fedstates,
+                               preserveTopology = TRUE, 
+                               dTolerance = 10000)
+plot_map(fedstates_simpl, strokecolor = &#39;#097FB3&#39;,
+         fillcolor = &#39;#AED3E4&#39;)</code></pre>
+<figure>
+<img src="fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/10fedstates_simpl_fail-1-1024x731.png" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>Ups! We can see that <code>st_simplify</code> produced gaps and overlapping features, i.e. shared borders were not handled correctly! The problem is that <code>st_simplify</code> simply doesn’t consider the topological concept of shared borders between features (like federal states in this case). When setting <code>preserveTopology = TRUE</code> it means that each feature’s topology is preserved, but it doesn’t mean that the topology <em>between</em> features is considered.</p>
+<p>Luckily, there’s the package <a href="https://cran.r-project.org/web/packages/rmapshaper/index.html">rmapshaper</a> that contains a function that does the trick. Before you install the package, please note that it requires a lot of (system-) dependencies to be installed.</p>
+<p><a href="https://en.wikipedia.org/wiki/Visvalingam–Whyatt_algorithm">Visvalingam’s algorithm</a>, which is used in this function, let’s us specify the portion of vertices that should be kept after simplification. This can be specified with the <code>keep</code> parameter. The parameter <code>keep_shapes</code> controls whether complete features such as islands can be removed in the simplification process.</p>
+<pre><code>library(rmapshaper)
+
+fedstates_simpl2 &lt;- ms_simplify(fedstates, keep = 0.001,
+                                keep_shapes = FALSE)
+plot_map(fedstates_simpl2, strokecolor = &#39;#097FB3&#39;,
+         fillcolor = &#39;#AED3E4&#39;)</code></pre>
+<figure>
+<img src="fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/11fedstates_simpl_rmapshaper-1-1024x731.png" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>As can be seen, <code>ms_simplify</code> respects the shared borders. The result is also much smaller in terms of memory usage:</p>
+<pre><code>round(c(object.size(fedstates),
+        object.size(fedstates_simpl2)) / 1024)
+[1] 7757   71</code></pre>
+<h2 id="expanding-and-shrinking-with-st_buffer">Expanding and shrinking with <code>st_buffer</code></h2>
+<p><a href="https://rdrr.io/cran/sf/man/geos_unary.html"><code>st_buffer</code></a> lets you expand (positive buffer distance) or shrink (negative buffer distance) polygon features. This may not per-se result in a simpler feature form, but it allows you to close holes (by expanding) or remove solitary, small features (by shrinking).</p>
+<p>Let’s try a first example. Again, the buffer distance is in the same unit as our CRS, which is meters in our case, and we’ll expand by 1km. When the buffer is generated, new vertices are added to form the expanded shape with round edges. The parameter <code>nQuadSegs</code> specifies how many segments are generated per quadrant and feature.</p>
+<pre><code>mv_buf &lt;- st_buffer(mv, dist = 1000, nQuadSegs = 1)
+plot_map(mv_buf, graticules = TRUE)</code></pre>
+<figure>
+<img src="fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/12mvbuf-1-1024x731.png" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<pre><code>plot_map(mv, mv_buf, graticules = TRUE,
+         zoom_to = c(13.359, 54.413), zoom_level = 8)</code></pre>
+<figure>
+<img src="fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/13mvbuf_diff-1-edited.png" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>The memory usage is not so much reduced:</p>
+<pre><code>round(c(object.size(mv), object.size(mv_buf)) / 1024)
+[1] 960 265</code></pre>
+<p>Now we shrink MV by 1km:</p>
+<pre><code>mv_buf &lt;- st_buffer(mv, -1000, nQuadSegs = 1)
+plot_map(mv_buf)</code></pre>
+<figure>
+<img src="fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/14mvbuf2-1-1024x731.png" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<pre><code>plot_map(mv, mv_buf, zoom_to = c(13.359, 54.413),
+         zoom_level = 8)</code></pre>
+<figure>
+<img src="fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/15mvbuf2_diff-1-edited.png" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>We can also combine both buffering options, by first shrinking in order to remove small isolated features and then expanding again by the same distance so that the result has more or less the same extents as the original:</p>
+<pre><code>mv_buf &lt;- st_buffer(mv, -1000, nQuadSegs = 1) %&gt;%
+  st_buffer(1000, nQuadSegs = 1)
+plot_map(mv_buf)</code></pre>
+<figure>
+<img src="fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/16mvbuf3-1-1024x731.png" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<pre><code>plot_map(mv, mv_buf, zoom_to = c(13.359, 54.413),
+         zoom_level = 8)</code></pre>
+<figure>
+<img src="fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/17mvbuf3_diff-1-edited.png" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>Note how this is more aggressive than <code>st_simplify</code> but the result uses more memory. We could now additionally apply <code>st_simplify</code> to arrive at a very reduced feature.</p>
+<pre><code>round(c(object.size(mv), object.size(mv_buf)) / 1024)
+[1] 960 239</code></pre>
+<p>When we apply <code>st_buffer</code> to a dataset with multiple features like the federal states dataset, the buffering will be applied to every feature (i.e. every state’s boundary) separately. This will result in either overlapping features (extending) or gaps between them (shrinking).</p>
+<h2 id="joining-overlapping-and-adjacent-features-with-st_union">Joining overlapping and adjacent features with <code>st_union</code></h2>
+<p>The last function that we will look at is <code>st_union</code>. It can be used to join overlapping and adjacent features. With this, we could for example join all features of the federal state boundaries in Germany and get a single feature that represents the national boundaries. But let’s look at a more interesting example and load a new dataset. It contains a sample with regions with street noise of 50dB or more in Berlin at night.</p>
+<pre><code>noise &lt;- read_sf(&#39;data/noise_berlin_sample.geojson&#39;) %&gt;%
+  st_transform(&#39;+proj=aeqd +lat_0=52.51883 +lon_0=13.41537&#39;)
+
+plot_map(noise, graticules = TRUE)</code></pre>
+<figure>
+<img src="fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/18noise-1-1024x731.png" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>You may notice the ragged edges in the picture above. Furthermore, the dataset is quite large and contains a lot of rows (i.e. features):</p>
+<pre><code>nrow(noise)
+[1] 48795</code></pre>
+<p>Why is that so? When we zoom in and also plot each feature’s boundary, we will notice that we actually have some sort of vectorized raster data! The noise regions are tiny raster cells:</p>
+<pre><code>plot_map(noise, strokecolor = &#39;#097FB3&#39;, fillcolor = &#39;#AED3E4&#39;,
+         zoom_level = 15)</code></pre>
+<figure>
+<img src="fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/19noise_zoom-1-edited.png" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>Most cells cover 100m² and come along with the noise level at this spot (<code>L_N</code> column):</p>
+<pre><code>summary(noise[c(&#39;Shape_Area&#39;, &#39;L_N&#39;)])
+  Shape_Area         L_N                 geometry    
+  Min.   :100.0   Min.   :50.00   MULTIPOLYGON :48795  
+  1st Qu.:100.0   1st Qu.:54.10   epsg:NA      :    0  
+  Median :100.0   Median :58.50   +proj=aeqd…:    0  
+  Mean   :105.1   Mean   :59.12                        
+  3rd Qu.:100.0   3rd Qu.:63.80                        
+  Max.   :700.0   Max.   :75.40  </code></pre>
+<p>If we don’t care for the specific noise levels and only want to form a single feature that represents noise levels with 50dB or more, we can apply <code>st_union</code> on the whole dataset:</p>
+<pre><code>noise_union &lt;- st_union(noise)
+noise_union
+Geometry set for 1 feature 
+ geometry type:  MULTIPOLYGON
+ dimension:      XY
+ bbox:           xmin: -2218.35 ymin: -2035.134
+                 xmax: 2174.847 ymax: 845.1362
+ CRS:            +proj=aeqd +lat_0=52.51883 +lon_0=13.41537
+ MULTIPOLYGON (((-1931.274 -2034.915, -1941.274 …</code></pre>
+<p>As we can see in the output above, only a single feature is left (and all feature-specific “metadata” such as level of noise is gone!). We can confirm this visually:</p>
+<pre><code>plot_map(noise_union, strokecolor = &#39;#097FB3&#39;,
+         fillcolor = &#39;#AED3E4&#39;, zoom_level = 15)</code></pre>
+<figure>
+<img src="fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/20noise_union_zoom-1-edited.png" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<pre><code>plot_map(noise_union, strokecolor = &#39;#097FB3&#39;,
+         fillcolor = &#39;#AED3E4&#39;)</code></pre>
+<figure>
+<img src="fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/21noise_union-1-1024x731.png" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>Additionally applying <code>st_simplify</code> removes the ragged edges:</p>
+<pre><code>noise_union_simpl &lt;- st_simplify(noise_union,
+                                 preserveTopology = FALSE, 
+                                 dTolerance = 50)
+plot_map(noise_union_simpl, strokecolor = &#39;#097FB3&#39;,
+         fillcolor = &#39;#AED3E4&#39;)</code></pre>
+<figure>
+<img src="fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/22noise_union_simpl-1-1024x731.png" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>Note how much the memory consumption was reduced from initially 42 <em>mega</em>bytes to 282 <em>kilo</em>bytes or even 18 kilobytes when further simplified:</p>
+<pre><code>round(c(object.size(noise), object.size(noise_union),
+        object.size(noise_union_simpl)) / 1024)
+[1] 41959   282    18</code></pre>
+<p>Applying simplify without union before would not have had the desired effect since <code>st_simplify</code> is performed per feature:</p>
+<pre><code>st_simplify(noise, preserveTopology = FALSE,
+            dTolerance = 10) %&gt;%
+  plot_map(strokecolor = &#39;#097FB3&#39;, fillcolor = &#39;#AED3E4&#39;)</code></pre>
+<figure>
+<img src="fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/23noise_union_fail-1-1024x731.png" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>If we want to retain some of the noise level information, we can quantize (“bin”) the noise level data into different ordered categories and apply the union operation per category. I’m used to the <a href="https://dplyr.tidyverse.org/">dplyr</a> package, so I’ll first create a quantized version of the noise variable <code>L_N</code> with three equally spaced levels between 50dB and 80dB and then use <code>group_by</code> in conjunction with <code>group_modify</code>:</p>
+<pre><code>library(dplyr)
+
+noise_per_lvl &lt;-
+  mutate(noise,
+         level = cut(L_N,
+                     breaks = seq(50, 80, by = 10),
+                     right = FALSE,
+                     ordered_result = TRUE)) %&gt;%
+  group_by(level) %&gt;%  # &quot;.x&quot; is refers to the current group:
+  group_modify(~ st_union(.x) %&gt;% as_tibble()) %&gt;%
+  ungroup() %&gt;%
+  st_as_sf()      # convert back to &quot;sf&quot; object since this 
+                  # information is lost during group_by()
+noise_per_lvl
+## Simple feature collection with 3 features and 1 field
+## geometry type:  MULTIPOLYGON
+## dimension:      XY
+## bbox:           xmin: -2218.35 ymin: -2035.134…
+## CRS:            +proj=aeqd +lat_0=52.51883… 
+## # A tibble: 3 x 2
+##   level   geometry
+## 1 [50,60) (((1908.792 -1950.634, 1898.792 -1950.854…
+## 2 [60,70) (((1758.789 -1953.926, 1748.789 -1954.146…
+## 3 [70,80) (((-527.0325 -373.2836, -537.0327 -373.50…</code></pre>
+<p>Again, the result is much smaller in terms of memory:</p>
+<pre><code>round(c(object.size(noise), object.size(noise_per_lvl)) / 1024)
+[1] 41959  1090</code></pre>
+<p>The following gives us a plot with the three noise levels:</p>
+<pre><code>ggplot(noise_per_lvl) +
+  geom_sf(aes(color = level, fill = level)) +
+  coord_sf(datum = NA) +
+  theme_bw()</code></pre>
+<figure>
+<img src="fig/simplifying-geospatial-features-in-r-with-sf-and-rmapshaper/24noise_levels-1-1024x731.png" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<h2 id="conclusion">Conclusion</h2>
+<p>All in all, it’s wise to first think about simplifying your spatial data before you continue to work with it. Spatial datasets are often very large and depending on your use-case you may not need a high level of detail. It may even be absolutely necessary to reduce the complexity of your data, e.g. when the computational capacities are limited or when you produce interactive maps for the web. As shown, R has all the tools that you need to simplify spatial data with the packages sf and rmapshaper.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>

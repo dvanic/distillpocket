@@ -1,0 +1,60 @@
+---
+title: "How to Give a Status Update To Executives"
+description: |
+  A story and a framework
+author:
+  - name: Jacob Kaplan-Moss
+    url:  https://jacobian.org/2021/mar/5/exec-status-update/
+citation_url: https://jacobian.org/2021/mar/5/exec-status-update/
+date: 03-09-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+Here’s a weird little skill I had to learn the hard way: how to give a status update to executives, investors, or boards.
+
+If you’ve been in any sort of project lead position, you’ve probably been  asked for a status. In most circumstances, specifics are details are  pretty important – e.g., if your boss is asking for an update, they  probably want to know what’s up in some depth. The good, the bad, and  the ugly – you want to share all of it.
+
+This changes once the  audience is an executive team, and that can come as a surprise (it  certainly wasn’t something I was prepared for). Executives tend to have a huge number of projects and priorities they’re paying attention to.  And, the dynamic of briefing a *team* means each of them has *their own* different set of priorities and projects.
+
+So, when briefing this specific audience, the format needs to change.  Instead of specifics and details, the focus needs to be only on what you think this team *needs* to know. A good executive status update  is very short – a few minutes, max – and includes just a handful of key  points. More, and you risk misunderstanding.
+
+Here’s my structure for this kind of update:
+
+1. An overall summary about how the project is going. I’ll usually first  share how I’m feeling about the project (“it’s running well” / “I’m  worried about …") to anchor what comes next, but I’ll quickly aim for  something *quantitative* (e.g., “we’re two weeks ahead of schedule”) to put that feeling into context.
+2. One or two highlights, if appropriate. If we just hit a big milestone, or  shipped something major, or solved a huge problem, it’s worth bragging  about. I’ll also use this point to highlight someone on the team whose  work has been especially great lately.
+3. One or two of our biggest risks, if they’re something the executive team needs to know about. If  we’re over budget, running late, or at risk of any of those: I’ll  highlight them.
+4. A request for the team (or specific people), if I have it.
+5. “Any questions?”
+
+Here’s what this might sound like:
+
+> Project X is running smoothly. We’re making steady progress: we’ve delivered a  bit over half of the features on our roadmap, and we’re on track to  launch publicly in May.
+>
+> I want to particularly highlight J—’s  design work; every time we share a new demo with our user research group they rave over how much they love the design.
+>
+> We do have some  cost risk: right now, the code’s pretty inefficient and would require us to increase our AWS spend by 25% when we put this into production. We  either need to decide that cost is acceptable, or add some extra time to the schedule for performance optimization. I need some guidance from  this team on that point: can you folks let me know if that cost seems OK or not?
+>
+> Thanks, any questions?
+
+This might seem weird: there aren’t any specifics about deliverables, or features  shipped, or how anyone on the team is doing (other than J—), etc. But  it’s exactly what I want the executive team to know: things are on  track, one person on the team is doing great work worth highlighting,  and here’s my one question.
+
+I think people can struggle with this  lack of detail when they first try it. It can seem like there’s not  enough information to show the status accurately. Or they’re afraid that the lack of detail can be seen as a sign that they don’t know what’s  going on. They can feel the need to provide “proof” by getting into the  weeds.
+
+I think the difference is that, at the top of an  organization, there tends to be a shift away from this kind of “proof”  towards a general assumption of information-sharing on a need-to-know  basis. Executives, especially at large organizations, need to synthesize a truly staggering amount of information, and so effective executives  learn to value people who filter for “what you need to know.” The  assumption becomes: if you didn’t mention it it’s because it doesn’t  warrant mention, not because you don’t know it.
+
+Of course, you  still need †o know your shit! There very well might be questions, and  detailed ones, and if you can’t back up what you’ve just said with the  details, it’s a bad look. So the preparation for a status update is the  same as any other situation, you just edit judiciously before actually  speaking.
+
+------
+
+Story time: here’s how I learned this lesson:
+
+I was leading incident response after a particularly nasty security  breach, and I was asked to give a status update to the executive team at their next meeting. This was a large company – over 10,000 employees –  and it was the first time I’d met any of the executives.
+
+I had  about a week to prepare, and I spent most of it pulling together a ton  of data and information into a briefing. I think I ended up with about  two dozen slides.
+
+The day before the meeting, I got an email from  the assistant to the CEO. He wrote, “you’ll give your update from 1:35 - 1:38, followed by 2 minutes for questions”. I thought for sure this was a typo, but no: I had 180 seconds for my update about an incident  response that had been running for several weeks and included dozens of  staff and at least one law enforcement agency.
+
+In the end it went  well: I was able to get some emergency coaching to help distill my  points down, and that’s where I started to develop the template that you see above. But, gosh, that day was terrifying; I wish I’d been able to  learn this skill in a less stressful way!

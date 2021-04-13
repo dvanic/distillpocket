@@ -1,0 +1,23 @@
+---
+title: "Elvis Saravia's (omarsar0's) recommendations for NLP resources (via Twitter)"
+description: |
+  List of stuff
+author:
+  - name: Elvis Saravia
+    url: https://elvissaravia.substack.com/p/my-recommendations-for-getting-started
+date: 03-10-2021
+citation_url: https://elvissaravia.substack.com/p/my-recommendations-for-getting-started
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+Links:
+
+- FastAI NLP - https://www.fast.ai/2019/07/08/fastai-nlp/
+- Stanford cs224n - http://web.stanford.edu/class/cs224n/
+- NLP progerss - http://nlpprogress.com/
+- CMU neural nets - https://www.youtube.com/playlist?list=PL8PYTP1V4I8AkaHEJ7lOOrlex-pcxS-XV
+- Modern Deep Learning Techniques Applied to Natural Language Processing - https://nlpoverview.com/
+- Speech and Language Processing (3rd ed. draft) Dan Jurafsky and James H. Martin - https://web.stanford.edu/~jurafsky/slp3/

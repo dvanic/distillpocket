@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #20794d; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #20794d; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+  <!--radix_placeholder_meta_tags-->
+  <title>Using Kubernetes and the Future Package to Easily Parallelize R in the Cloud </title>
+
+  <meta property="description" itemprop="description" content="Useful details on paralellising with Google Cloud"/>
+
+
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2021-04-13"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-04-13"/>
+  <meta name="article:author" content="Chris Paciorek"/>
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="Using Kubernetes and the Future Package to Easily Parallelize R in the Cloud "/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Useful details on paralellising with Google Cloud"/>
+  <meta property="og:locale" content="en_US"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="Using Kubernetes and the Future Package to Easily Parallelize R in the Cloud "/>
+  <meta property="twitter:description" content="Useful details on paralellising with Google Cloud"/>
+
+  <!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
+  <meta name="citation_title" content="Using Kubernetes and the Future Package to Easily Parallelize R in the Cloud "/>
+  <meta name="citation_fulltext_html_url" content="https://www.jottr.org/2021/04/08/future-and-kubernetes/"/>
+  <meta name="citation_online_date" content="2021/04/13"/>
+  <meta name="citation_publication_date" content="2021/04/13"/>
+  <meta name="citation_author" content="Chris Paciorek"/>
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","citation_url","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Using Kubernetes and the Future Package to Easily Parallelize R in the Cloud "]},{"type":"character","attributes":{},"value":["Useful details on paralellising with Google Cloud\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Chris Paciorek"]},{"type":"character","attributes":{},"value":["https://www.jottr.org/2021/04/08/future-and-kubernetes/"]}]}]},{"type":"character","attributes":{},"value":["https://www.jottr.org/2021/04/08/future-and-kubernetes/"]},{"type":"character","attributes":{},"value":["04-13-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["fig/using-kubernetes-and-the-future-package-to-easily-parallelize-r-in-the-cloud/k8s.png","fig/using-kubernetes-and-the-future-package-to-easily-parallelize-r-in-the-cloud/rstudio.png"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .d-contents li {
+    list-style-type: none
+  }
+
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+
+  .d-contents ul {
+    padding-left: 1em
+  }
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure img {
+    width: 100%;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme
+    $('code.sourceCode a:empty').remove();
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-contents').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <!--/radix_placeholder_distill-->
+  <script src="using-kubernetes-and-the-future-package-to-easily-parallelize-r-in-the-cloud_files/header-attrs-2.7/header-attrs.js"></script>
+  <script src="using-kubernetes-and-the-future-package-to-easily-parallelize-r-in-the-cloud_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="using-kubernetes-and-the-future-package-to-easily-parallelize-r-in-the-cloud_files/popper-2.6.0/popper.min.js"></script>
+  <link href="using-kubernetes-and-the-future-package-to-easily-parallelize-r-in-the-cloud_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="using-kubernetes-and-the-future-package-to-easily-parallelize-r-in-the-cloud_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="using-kubernetes-and-the-future-package-to-easily-parallelize-r-in-the-cloud_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="using-kubernetes-and-the-future-package-to-easily-parallelize-r-in-the-cloud_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="using-kubernetes-and-the-future-package-to-easily-parallelize-r-in-the-cloud_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="using-kubernetes-and-the-future-package-to-easily-parallelize-r-in-the-cloud_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="using-kubernetes-and-the-future-package-to-easily-parallelize-r-in-the-cloud_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Using Kubernetes and the Future Package to Easily Parallelize R in the Cloud ","description":"Useful details on paralellising with Google Cloud","authors":[{"author":"Chris Paciorek","authorURL":"https://www.jottr.org/2021/04/08/future-and-kubernetes/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-04-13T00:00:00.000+00:00","citationText":"Paciorek, 2021"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Using Kubernetes and the Future Package to Easily Parallelize R in the Cloud</h1>
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
+<p><p>Useful details on paralellising with Google Cloud</p></p>
+</div>
+
+<div class="d-byline">
+  Chris Paciorek <a href="https://www.jottr.org/2021/04/08/future-and-kubernetes/" class="uri">https://www.jottr.org/2021/04/08/future-and-kubernetes/</a> 
+  
+<br/>04-13-2021
+</div>
+
+<div class="d-article">
+<p>In this post, I’ll demonstrate that you can easily use the <strong><a href="https://cran.r-project.org/package=future">future</a></strong> package in R on a cluster of machines running in the cloud, specifically on a Kubernetes cluster.</p>
+<p>This allows you to easily doing parallel computing in R in the cloud. One advantage of doing this in the cloud is the ability to easily scale the number and type of (virtual) machines across which you run your parallel computation.</p>
+<h2 id="why-use-kubernetes-to-start-a-cluster-in-the-cloud">Why use Kubernetes to start a cluster in the cloud?</h2>
+<p>Kubernetes is a platform for managing containers. You can think of the containers as lightweight Linux machines on which you can do your computation. By using the Kubernetes service of a cloud provider such as Google Cloud Platform (GCP) or Amazon Web Services (AWS), you can easily start up a cluster of (virtual) machines.</p>
+<p>There have been (and are) approaches to starting up a cluster of machines on AWS easily from the command line on your laptop. Some tools that are no longer actively maintained are <a href="http://star.mit.edu/cluster">StarCluster</a> and <a href="https://cfncluster.readthedocs.io/en/latest">CfnCluster</a>. And there is now something called <a href="https://docs.aws.amazon.com/parallelcluster/latest/ug/getting_started.html">AWS ParallelCluster</a>. But doing it via Kubernetes allows you to build upon an industry standard platform that can be used on various cloud providers. A similar effort (which I heavily borrowed from in developing the setup described here) allows one to run a <a href="https://docs.dask.org/en/latest/setup/kubernetes-helm.html">Python Dask cluster</a> accessed via a Jupyter notebook.</p>
+<p>Many of the cloud providers have Kubernetes services (and it’s also possible you’d have access to a Kubernetes service running at your institution or company). In particular, I’ve experimented with <a href="https://cloud.google.com/kubernetes-engine">Google Kubernetes Engine (GKE)</a> and <a href="https://aws.amazon.com/eks">Amazon’s Elastic Kubernetes Service (EKS)</a>. This post will demonstrate setting up your cluster using Google’s GKE, but see my GitHub <a href="https://github.com/paciorek/future-kubernetes">future-kubernetes</a> repository for details on doing it on Amazon’s EKS. Note that while I’ve gotten things to work on EKS, there have been <a href="https://github.com/paciorek/future-kubernetes#AWS-troubleshooting">various headaches</a> that I haven’t encountered on GKE.</p>
+<p>I’m not a Kubernetes expert, nor a GCP or AWS expert (that might explain the headaches I just mentioned), but one upside is that hopefully I’ll go through all the details at a level someone who is not an expert can follow along. In fact, part of my goal in setting this up has been to learn more about Kubernetes, which I’ve done, but note that there’s <em>a lot</em> to it.</p>
+<p>More details about the setup, including how it was developed and troubleshooting tips can be found in my <a href="https://github.com/paciorek/future-kubernetes">future-kubernetes</a> repository.</p>
+<h2 id="how-it-works-briefly">How it works (briefly)</h2>
+<p>This diagram in Figure 1 outlines the pieces of the setup.</p>
+<p><img src="fig/using-kubernetes-and-the-future-package-to-easily-parallelize-r-in-the-cloud/k8s.png" alt="Overview of using future on a Kubernetes cluster" /> Figure 1. Overview of using future on a Kubernetes cluster</p>
+<p>Work on a Kubernetes cluster is divided amongst <em>pods</em>, which carry out the components of your work and can communicate with each other. A pod is basically a Linux container. (Strictly speaking a pod can contain multiple containers and shared resources for those containers, but for our purposes, it’s simplest just to think of a pod as being a Linux container.) The pods run on the nodes in the Kubernetes cluster, where each Kubernetes node runs on a compute instance of the cloud provider. These instances are themselves virtual machines running on the cloud provider’s actual hardware. (I.e., somewhere out there, behind all the layers of abstraction, there are actual real computers running on endless aisles of computer racks in some windowless warehouse!) One of the nice things about Kubernetes is that if a pod dies, Kubernetes will automatically restart it.</p>
+<p>The basic steps are:</p>
+<ol type="1">
+<li>Start your Kubernetes cluster on the cloud provider’s Kubernetes service</li>
+<li>Start the pods using Helm, the Kubernetes package manager</li>
+<li>Connect to the RStudio Server session running on the cluster from your browser</li>
+<li>Run your future-based computation</li>
+<li>Terminate the Kubernetes cluster</li>
+</ol>
+<p>We use the Kubernetes package manager, Helm, to run the pods of interest:</p>
+<ul>
+<li>one (scheduler) pod for a main process that runs RStudio Server and communicates with the workers</li>
+<li>multiple (worker) pods, each with one R worker process to act as the workers managed by the <strong>future</strong> package</li>
+</ul>
+<p>Helm manages the pods and related <em>services</em>. An example of a service is to open a port on the scheduler pod so the R worker processes can connect to that port, allowing the scheduler pod RStudio Server process to communicate with the worker R processes. I have a <a href="https://github.com/paciorek/future-helm-chart">Helm chart</a> that does this; it borrows heavily from the <a href="https://github.com/dask/helm-chart">Dask Helm chart</a> for the Dask package for Python.</p>
+<p>Each pod runs a Docker container. I use my own <a href="https://github.com/paciorek/future-kubernetes-docker">Docker container</a> that layers a bit on top of the <a href="https://rocker-project.org">Rocker</a> container that contains R and RStudio Server.</p>
+<h2 id="step-1-start-the-kubernetes-cluster">Step 1: Start the Kubernetes cluster</h2>
+<p>Here I assume you have already installed:</p>
+<ul>
+<li>the command line interface to Google Cloud,</li>
+<li>the <code>kubectl</code> interface for interacting with Kubernetes, and</li>
+<li><code>helm</code> for installing Helm charts (i.e., Kubernetes packages).</li>
+</ul>
+<p>Installation details can be found in the <a href="https://github.com/paciorek/future-kubernetes">future-kubernetes</a> repository.</p>
+<p>First we’ll start our cluster (the first part of Step 1 in Figure 1):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gcloud</span> container clusters create <span class="kw">\</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">--machine-type</span> n1-standard-1 <span class="kw">\</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">--num-nodes</span> 4 <span class="kw">\</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">--zone</span> us-west1-a <span class="kw">\</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">--cluster-version</span> latest <span class="kw">\</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">my-cluster</span></span></code></pre></div>
+<p>I’ve asked for four virtual machines (nodes), using the basic (and cheap) <code>n1-standard-1</code> instance type (which has a single CPU per virtual machine) from Google Cloud Platform.</p>
+<p>You’ll want to specify the total number of cores on the virtual machines to be equal to the number of R workers that you want to start and that you specify in the Helm chart (as discussed below). Here we ask for four one-cpu nodes, and our Helm chart starts four workers, so all is well. See the <a href="https://www.jottr.org/2021/04/08/future-and-kubernetes/#modifications">Modifications section</a> below on how to start up a different number of workers.</p>
+<p>Since the RStudio Server process that you interact with wouldn’t generally be doing heavy computation at the same time as the workers, it’s OK that the RStudio scheduler pod and a worker pod would end up using the same virtual machine.</p>
+<h2 id="step-2-install-the-helm-chart-to-set-up-your-pods">Step 2: Install the Helm chart to set up your pods</h2>
+<p>Next we need to get our pods going by installing the Helm chart (i.e., package) on the cluster; the installed chart is called a <em>release</em>. As discussed above, the Helm chart tells Kubernetes what pods to start and how they are configured.</p>
+<p>First we need to give our account permissions to perform administrative actions:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> create clusterrolebinding cluster-admin-binding <span class="kw">\</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">--clusterrole</span>=cluster-admin</span></code></pre></div>
+<p>Now let’s install the release. This code assumes the use of Helm version 3 or greater (for older versions <a href="https://github.com/paciorek/future-kubernetes">see my full instructions</a>).</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/paciorek/future-helm-chart   # download the materials</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> -czf future-helm.tgz -C future-helm-chart .           # create a zipped archive (tarball) <span class="ex">that</span> <span class="kw">`</span><span class="ex">helm</span> install<span class="kw">`</span> needs</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install --wait test ./future-helm.tgz                # install (start the pods)</span></code></pre></div>
+<p>You’ll need to name your release; I’ve used ‘test’ above.</p>
+<p>The <code>--wait</code> flag tells helm to wait until all the pods have started. Once that happens, you’ll see a message about the release and how to connect to the RStudio interface, which we’ll discuss further in the next section.</p>
+<p>We can check the pods are running:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get pods</span></code></pre></div>
+<p>You should see something like this (the alphanumeric characters at the ends of the names will differ in your case):</p>
+<pre><code>NAME                                READY   STATUS    RESTARTS   AGE
+future-scheduler-6476fd9c44-mvmz6   1/1     Running   0          116s
+future-worker-54db85cb7b-47qsd      1/1     Running   0          115s
+future-worker-54db85cb7b-4xf4x      1/1     Running   0          115s
+future-worker-54db85cb7b-rj6bj      1/1     Running   0          116s
+future-worker-54db85cb7b-wvp4n      1/1     Running   0          115s</code></pre>
+<p>As expected, we have one scheduler and four workers.</p>
+<h2 id="step-3-connect-to-rstudio-server-running-in-the-cluster">Step 3: Connect to RStudio Server running in the cluster</h2>
+<p>Next we’ll connect to the RStudio instance running via RStudio Server on our main (scheduler) pod, using the browser on our laptop (Step 3 in Figure 1).</p>
+<p>After installing the Helm chart, you should have seen a printout with some instructions on how to do this. First you need to connect a port on your laptop to the RStudio port on the main pod (running of course in the cloud):</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">RSTUDIO_SERVER_IP=</span><span class="st">&quot;127.0.0.1&quot;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">RSTUDIO_SERVER_PORT=</span>8787</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> port-forward --namespace default svc/future-scheduler <span class="va">$RSTUDIO_SERVER_PORT</span>:8787 <span class="kw">&amp;</span></span></code></pre></div>
+<p>You can now connect from your browser to the RStudio Server instance by going to the URL: <a href="https://127.0.0.1:8787" class="uri">https://127.0.0.1:8787</a>.</p>
+<p>Enter <code>rstudio</code> as the username and <code>future</code> as the password to login to RStudio.</p>
+<p>What’s happening is that port 8787 on your laptop is forwarding to the port on the main pod on which RStudio Server is listening (which is also port 8787). So you can just act as if RStudio Server is accessible directly on your laptop.</p>
+<p>One nice thing about this is that there is no public IP address for someone to maliciously use to connect to your cluster. Instead the access is handled securely entirely through <code>kubectl</code> running on your laptop. However, it also means that you couldn’t easily share your cluster with a collaborator. For details on configuring things so there is a public IP, please see <a href="https://github.com/paciorek/future-kubernetes#connecting-to-the-rstudio-instance-when-starting-the-cluster-from-a-remote-machine">my repository</a>.</p>
+<p>Note that there is nothing magical about running your computation via RStudio. You could <a href="https://www.jottr.org/2021/04/08/future-and-kubernetes/#connect-to-a-pod">connect to the main pod</a> and simply run R in it and then use the <strong>future</strong> package.</p>
+<h2 id="step-4-run-your-future-based-parallel-r-code">Step 4: Run your future-based parallel R code</h2>
+<p>Now we’ll start up our future cluster and run our computation (Step 4 in Figure 1):</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(future)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plan</span>(cluster, <span class="at">manual =</span> <span class="cn">TRUE</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>The key thing is that we set <code>manual = TRUE</code> above. This ensures that the functions from the <strong>future</strong> package don’t try to start R processes on the workers, as those R processes have already been started by Kubernetes and are waiting to connect to the main (RStudio Server) process.</p>
+<p>Note that we don’t need to say how many future workers we want. This is because the Helm chart sets an environment variable in the scheduler pod’s <code>Renviron</code> file based on the number of worker pod replicas. Since that variable is used by the <strong>future</strong> package (via <code>parallelly::availableCores()</code>) as the default number of future workers, this ensures that there are only as many future workers as you have worker pods. However, if you modify the number of worker pods after installing the Helm chart, you may need to set the <code>workers</code> argument to <code>plan()</code> manually. (And note that if you were to specify more future workers than R worker processes (i.e., pods) you would get an error and if you were to specify fewer, you wouldn’t be using all the resources that you are paying for.)</p>
+<p>Now we can use the various tools in the <strong>future</strong> package as we would if on our own machine or working on a Linux cluster.</p>
+<p>Let’s run our parallelized operations. I’m going to do the world’s least interesting calculation of calculating the mean of many (10 million) random numbers forty separate times in parallel. Not interesting, but presumably if you’re reading this you have your own interesting computation in mind and hopefully know how to do it using future’s tools such as <strong><a href="https://cran.r-project.org/package=future.apply">future.apply</a></strong> and <strong><a href="https://cran.r-project.org/package=foreach">foreach</a></strong> with <strong><a href="https://cran.r-project.org/package=doFuture">doFuture</a></strong>.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(future.apply)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">future_sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">40</span>, <span class="cf">function</span>(i) <span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="fl">1e7</span>)), <span class="at">future.seed =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>Note that all of this assumes you’re working interactively, but you can always reconnect to the RStudio Server instance after closing the browser, and any long-running code should continue running even if you close the browser.</p>
+<p>Figure 2 shows a screenshot of the RStudio interface.</p>
+<p><img src="fig/using-kubernetes-and-the-future-package-to-easily-parallelize-r-in-the-cloud/rstudio.png" alt="RStudio interface, demonstrating use of future commands" /> Figure 2. Screenshot of the RStudio interface</p>
+<h3 id="working-with-files">Working with files</h3>
+<p>Note that <code>/home/rstudio</code> will be your default working directory in RStudio and the RStudio Server process will be running as the user <code>rstudio</code>.</p>
+<p>You can use <code>/tmp</code> and <code>/home/rstudio</code> for files, both within RStudio and within code running on the workers, but note that files (even in <code>/home/rstudio</code>) are not shared between workers nor between the workers and the RStudio Server pod.</p>
+<p>To make data available to your RStudio process or get output data back to your laptop, you can use <code>kubectl cp</code> to copy files between your laptop and the RStudio Server pod. Here’s an example of copying to/from <code>/home/rstudio</code>:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">## create a variable with the name of the scheduler pod</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">SCHEDULER=$(</span><span class="ex">kubectl</span> get pod --namespace default -o jsonpath=<span class="st">&#39;{.items[?(@.metadata.labels.component==&quot;scheduler&quot;)].metadata.name}&#39;</span><span class="va">)</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">## copy a file to the scheduler pod</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> cp my_laptop_file <span class="va">${SCHEDULER}</span>:home/rstudio/</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">## copy a file from the scheduler pod</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> cp <span class="va">${SCHEDULER}</span>:home/rstudio/my_output_file .</span></code></pre></div>
+<p>Of course you can also interact with the web from your RStudio process, so you could download data to the RStudio process from the internet.</p>
+<h2 id="step-5-cleaning-up">Step 5: Cleaning up</h2>
+<p>Make sure to shut down your Kubernetes cluster, so you don’t keep getting charged.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gcloud</span> container clusters delete my-cluster --zone=us-west1-a</span></code></pre></div>
+<h2 id="modifications">Modifications</h2>
+<p>You can modify the Helm chart in advance, before installing it. For example you might want to install other R packages for use in your parallel code or change the number of workers.</p>
+<p>To add additional R packages, go into the <code>future-helm-chart</code> directory (which you created using the directions above in Step 2) and edit the <a href="https://github.com/paciorek/future-helm-chart/blob/master/values.yaml">values.yaml</a> file. Simply modify the lines that look like this:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">env</span><span class="kw">:</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">  #  - name: EXTRA_R_PACKAGES</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">  #    value: data.table</span></span></code></pre></div>
+<p>by removing the “#” comment characters and putting the R packages you want installed in place of <code>data.table</code>, with the names of the packages separated by spaces, e.g.,</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">env</span><span class="kw">:</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> EXTRA_R_PACKAGES</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">value</span><span class="kw">:</span><span class="at"> foreach doFuture</span></span></code></pre></div>
+<p>In many cases you may want these packages installed on both the scheduler pod (where RStudio Server runs) and on the workers. If so, make sure to modify the lines above in both the <code>scheduler</code> and <code>worker</code> stanzas.</p>
+<p>To modify the number of workers, modify the <code>replicas</code> line in the <code>worker</code> stanza of the <a href="https://github.com/paciorek/future-helm-chart/blob/master/values.yaml">values.yaml</a> file.</p>
+<p>Then rebuild the Helm chart:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> future-helm-chart  ## ensure you are in the directory containing <span class="kw">`</span><span class="ex">values.yaml</span><span class="kw">`</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> -czf ../future-helm.tgz .</span></code></pre></div>
+<p>and install as done previously.</p>
+<p>Note that doing the above to increase the number of workers would probably only make sense if you also modify the number of virtual machines you start your Kubernetes cluster with such that the total number of cores across the cloud provider compute instances matches the number of worker replicas.</p>
+<p>You may also be able to modify a running cluster. For example you could use <code>gcloud container clusters resize</code>. I haven’t experimented with this.</p>
+<p>To modify if your Helm chart is already installed (i.e., your release is running), one simple option is to reinstall the Helm chart as discussed below. You may also need to kill the <code>port-forward</code> process discussed in Step 3.</p>
+<p>For some changes, you can also also update a running release without uninstalling it by “patching” the running release or scaling resources. I won’t go into details here.</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>Things can definitely go wrong in getting all the pods to start up and communicate with each other. Here are some suggestions for monitoring what is going on and troubleshooting.</p>
+<p>First, you can use <code>kubectl</code> to check the pods are running:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get pods</span></code></pre></div>
+<h3 id="connect-to-a-pod">Connect to a pod</h3>
+<p>To connect to a pod, which allows you to check on installed software, check on what the pod is doing, and other troubleshooting, you can do the following</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">SCHEDULER=$(</span><span class="ex">kubectl</span> get pod --namespace default -o jsonpath=<span class="st">&#39;{.items[?(@.metadata.labels.component==&quot;scheduler&quot;)].metadata.name}&#39;</span><span class="va">)</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">WORKERS=$(</span><span class="ex">kubectl</span> get pod --namespace default -o jsonpath=<span class="st">&#39;{.items[?(@.metadata.labels.component==&quot;worker&quot;)].metadata.name}&#39;</span><span class="va">)</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">## access the scheduler pod:</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> exec -it <span class="va">${SCHEDULER}</span>  -- /bin/bash</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">## access a worker pod:</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$WORKERS</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> exec -it <span class="op">&lt;</span>insert_name_of_a_worker<span class="op">&gt;</span> -- /bin/bash</span></code></pre></div>
+<p>Alternatively just determine the name of the pod with <code>kubectl get pods</code> and then run the <code>kubectl exec -it ...</code> invocation above.</p>
+<p>Note that once you are in a pod, you can install software in the usual fashion of a Linux machine (in this case using <code>apt</code> commands such as <code>apt-get install</code>).</p>
+<h3 id="connect-to-a-virtual-machine">Connect to a virtual machine</h3>
+<p>Or to connect directly to an underlying VM, you can first determine the name of the VM and then use the <code>gcloud</code> tools to connect to it.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get nodes</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">## now, connect to one of the nodes, &#39;gke-my-cluster-default-pool-8b490768-2q9v&#39; in this case:</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gcloud</span> compute ssh gke-my-cluster-default-pool-8b490768-2q9v --zone us-west1-a</span></code></pre></div>
+<h3 id="check-your-running-code">Check your running code</h3>
+<p>To check that your code is actually running in parallel, one can run the following test and see that the result returns the names of distinct worker pods.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(future.apply)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">future_sapply</span>(<span class="fu">seq_len</span>(<span class="fu">nbrOfWorkers</span>()), <span class="cf">function</span>(i) <span class="fu">Sys.info</span>()[[<span class="st">&quot;nodename&quot;</span>]])</span></code></pre></div>
+<p>You should see something like this:</p>
+<pre><code>[1] future-worker-54db85cb7b-47qsd future-worker-54db85cb7b-4xf4x
+[3] future-worker-54db85cb7b-rj6bj future-worker-54db85cb7b-wvp4n</code></pre>
+<p>One can also connect to the pods or to the underlying virtual nodes (as discussed above) and run Unix commands such as <code>top</code> and <code>free</code> to understand CPU and memory usage.</p>
+<h3 id="reinstall-the-helm-release">Reinstall the Helm release</h3>
+<p>You can restart your release (i.e., restarting the pods, without restarting the whole Kubernetes cluster):</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> uninstall test</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">helm</span> install --wait test ./future-helm.tgz </span></code></pre></div>
+<p>Note that you may need to restart the entire Kubernetes cluster if you’re having difficulties that reinstalling the release doesn’t fix.</p>
+<h2 id="how-does-it-work">How does it work?</h2>
+<p>I’ve provided many of the details of how it works in my <a href="https://github.com/paciorek/future-kubernetes">future-kubernetes</a> repository.</p>
+<p>The key pieces are:</p>
+<ol type="1">
+<li>The <a href="https://github.com/paciorek/future-helm-chart">Helm chart</a> with the instructions for how to start the pods and any associated services.</li>
+<li>The <a href="https://github.com/paciorek/future-kubernetes-docker">Rocker-based Docker container(s)</a> that the pods run.</li>
+</ol>
+<p>That’s all there is to it … plus <a href="https://github.com/paciorek/future-kubernetes">these instructions</a>.</p>
+<p>Briefly:</p>
+<ol type="1">
+<li><p>Based on the Helm chart, Kubernetes starts up the ‘main’ or ‘scheduler’ pod running RStudio Server and multiple worker pods each running an R process. All of the pods are running the Rocker-based Docker container</p></li>
+<li><p>The RStudio Server main process and the workers use socket connections (via the R function</p>
+<pre><code>socketConnection()</code></pre>
+<p>) to communicate:</p>
+<ul>
+<li>the worker processes start R processes that are instructed to regularly make a socket connection using a particular port on the main scheduler pod</li>
+<li>when you run <code>future::plan()</code> (which calls <code>makeClusterPSOCK()</code>) in RStudio, the RStudio Server process attempts to make socket connections to the workers using that same port</li>
+</ul></li>
+<li><p>Once the socket connections are established, command of the RStudio session returns to you and you can run your future-based parallel R code.</p></li>
+</ol>
+<p>One thing I haven’t had time to work through is how to easily scale the number of workers after the Kubernetes cluster is running and the Helm chart installed, or even how to auto-scale – starting up workers as needed based on the number of workers requested via <code>plan()</code>.</p>
+<h2 id="wrap-up">Wrap up</h2>
+<p>If you’re interested in extending or improving this or collaborating in some fashion, please feel free to get in touch with me via the <a href="https://github.com/paciorek/future-kubernetes/issues">‘future-kubernetes’ issue tracker</a> or by email.</p>
+<p>And if you’re interested in using R with Kubernetes, note that RStudio provides an integration of RStudio Server Pro with Kubernetes that should allow one to run future-based workflows in parallel.</p>
+<p>/Chris</p>
+<h2 id="links">Links</h2>
+<ul>
+<li>future-kubernetes repository:
+<ul>
+<li>GitHub page: <a href="https://github.com/paciorek/future-kubernetes" class="uri">https://github.com/paciorek/future-kubernetes</a></li>
+</ul></li>
+<li>future-kubernetes Helm chart:
+<ul>
+<li>GitHub page: <a href="https://github.com/paciorek/future-helm-chart" class="uri">https://github.com/paciorek/future-helm-chart</a></li>
+</ul></li>
+<li>future-kubernetes Docker container:
+<ul>
+<li>GitHub page: <a href="https://github.com/paciorek/future-kubernetes-docker" class="uri">https://github.com/paciorek/future-kubernetes-docker</a></li>
+</ul></li>
+<li>future package:
+<ul>
+<li>CRAN page: <a href="https://cran.r-project.org/package=future" class="uri">https://cran.r-project.org/package=future</a>
+<ul>
+<li>GitHub page: <a href="https://github.com/HenrikBengtsson/future" class="uri">https://github.com/HenrikBengtsson/future</a></li>
+</ul>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div></li>
+</ul></li>
+</ul>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom">
+<h3 id="citation">Citation</h3>
+<p>For attribution, please cite this work as</p>
+<pre class="citation-appendix short">Paciorek (2021, April 13). Using Kubernetes and the Future Package to Easily Parallelize R in the Cloud . Retrieved from https://www.jottr.org/2021/04/08/future-and-kubernetes/</pre>
+<p>BibTeX citation</p>
+<pre class="citation-appendix long">@misc{paciorek2021using,
+  author = {Paciorek, Chris},
+  title = {Using Kubernetes and the Future Package to Easily Parallelize R in the Cloud },
+  url = {https://www.jottr.org/2021/04/08/future-and-kubernetes/},
+  year = {2021}
+}</pre>
+</div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>

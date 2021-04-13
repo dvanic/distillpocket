@@ -7,7 +7,87 @@
     <description>"This repository and generated site contain snippets of posts that I've read online and would like to save."
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Tue, 09 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 13 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Using Kubernetes and the Future Package to Easily Parallelize R in the Cloud </title>
+      <dc:creator>Chris Paciorek</dc:creator>
+      <link>https://dvanic.github.io/distillpocket/posts/2021-04-13-using-kubernetes-and-the-future-package-to-easily-parallelize-r-in-the-cloud</link>
+      <description>Useful details on paralellising with Google Cloud</description>
+      <guid>https://dvanic.github.io/distillpocket/posts/2021-04-13-using-kubernetes-and-the-future-package-to-easily-parallelize-r-in-the-cloud</guid>
+      <pubDate>Tue, 13 Apr 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Using RSelenium to scrape a paginated HTML table</title>
+      <dc:creator>Guillaume Pressiat</dc:creator>
+      <link>https://dvanic.github.io/distillpocket/posts/2021-04-13-using-rselenium-to-scrape-a-paginated-html-table</link>
+      <description>RSelenium code snippet really</description>
+      <guid>https://dvanic.github.io/distillpocket/posts/2021-04-13-using-rselenium-to-scrape-a-paginated-html-table</guid>
+      <pubDate>Tue, 13 Apr 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Framework for power analysis using simulation</title>
+      <dc:creator>Keith Goldfeld</dc:creator>
+      <link>https://dvanic.github.io/distillpocket/posts/2021-03-25-framework-for-power-analysis-using-simulation</link>
+      <description>A short description of the post.</description>
+      <guid>https://dvanic.github.io/distillpocket/posts/2021-03-25-framework-for-power-analysis-using-simulation</guid>
+      <pubDate>Thu, 25 Mar 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>How to treat as many files as fit on your hard disk without loops (sorta) nor running out of memory all the while being as lazy as possible</title>
+      <dc:creator>Bruno Rodrigues</dc:creator>
+      <link>https://dvanic.github.io/distillpocket/posts/2021-03-24-how-to-treat-as-many-files-as-fit-on-your-hard-disk-without-loops-sorta-nor-running-out-of-memory-all-the-while-being-as-lazy-as-possible</link>
+      <description>Nifty demonstration of using quosures to load/read/process/dump files into/out of memory in R (case study processes 15k spreadsheets)</description>
+      <guid>https://dvanic.github.io/distillpocket/posts/2021-03-24-how-to-treat-as-many-files-as-fit-on-your-hard-disk-without-loops-sorta-nor-running-out-of-memory-all-the-while-being-as-lazy-as-possible</guid>
+      <pubDate>Wed, 24 Mar 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Simplifying geospatial features in R with sf and rmapshaper</title>
+      <dc:creator>Markus Konrad</dc:creator>
+      <link>https://dvanic.github.io/distillpocket/posts/2021-03-24-simplifying-geospatial-features-in-r-with-sf-and-rmapshaper</link>
+      <description>Cool overview of how to simplify geospatial features to save memory</description>
+      <guid>https://dvanic.github.io/distillpocket/posts/2021-03-24-simplifying-geospatial-features-in-r-with-sf-and-rmapshaper</guid>
+      <pubDate>Wed, 24 Mar 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Clustering similar spatial patterns</title>
+      <dc:creator>Jakub Nowosad</dc:creator>
+      <link>https://dvanic.github.io/distillpocket/posts/2021-03-11-clustering-similar-spatial-patterns</link>
+      <description>A short description of the post.</description>
+      <guid>https://dvanic.github.io/distillpocket/posts/2021-03-11-clustering-similar-spatial-patterns</guid>
+      <pubDate>Thu, 11 Mar 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Exploring Wednesday Night Cable Ratings with OCR</title>
+      <dc:creator>jtlawren67</dc:creator>
+      <link>https://dvanic.github.io/distillpocket/posts/2021-03-11-exploring-wednesday-night-cable-ratings-with-ocr</link>
+      <description>Interesting blog post where tabular data is extracted from IMAGES of the tables</description>
+      <guid>https://dvanic.github.io/distillpocket/posts/2021-03-11-exploring-wednesday-night-cable-ratings-with-ocr</guid>
+      <pubDate>Thu, 11 Mar 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Faster data exploration with DataExplorer</title>
+      <dc:creator>Andrew Treadway</dc:creator>
+      <link>https://dvanic.github.io/distillpocket/posts/2021-03-11-faster-data-exploration-with-dataexplorer</link>
+      <description>A short description of the post.</description>
+      <guid>https://dvanic.github.io/distillpocket/posts/2021-03-11-faster-data-exploration-with-dataexplorer</guid>
+      <pubDate>Thu, 11 Mar 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Time Series Forecasting with XGBoost and Feature Importance</title>
+      <dc:creator>Selcuk Disci</dc:creator>
+      <link>https://dvanic.github.io/distillpocket/posts/2021-03-11-time-series-forecasting-with-xgboost-and-feature-importance</link>
+      <description>Predicting gold prices in Turkey</description>
+      <guid>https://dvanic.github.io/distillpocket/posts/2021-03-11-time-series-forecasting-with-xgboost-and-feature-importance</guid>
+      <pubDate>Thu, 11 Mar 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Elvis Saravia's (omarsar0's) recommendations for NLP resources (via Twitter)</title>
+      <dc:creator>Elvis Saravia</dc:creator>
+      <link>https://dvanic.github.io/distillpocket/posts/2021-03-10-elvis-omarsar0s-recommendations-for-nlp-resources-via-twitter</link>
+      <description>List of stuff</description>
+      <guid>https://dvanic.github.io/distillpocket/posts/2021-03-10-elvis-omarsar0s-recommendations-for-nlp-resources-via-twitter</guid>
+      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Deep learning in production</title>
       <dc:creator>SergiosKar</dc:creator>
@@ -22,6 +102,14 @@
       <link>https://dvanic.github.io/distillpocket/posts/2021-03-09-hello-world</link>
       <description>Instructions for using Distill as a notepad</description>
       <guid>https://dvanic.github.io/distillpocket/posts/2021-03-09-hello-world</guid>
+      <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>How to Give a Status Update To Executives</title>
+      <dc:creator>Jacob Kaplan-Moss</dc:creator>
+      <link>https://dvanic.github.io/distillpocket/posts/2021-03-09-how-to-give-a-status-update-to-executives</link>
+      <description>A story and a framework</description>
+      <guid>https://dvanic.github.io/distillpocket/posts/2021-03-09-how-to-give-a-status-update-to-executives</guid>
       <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
     </item>
     <item>
